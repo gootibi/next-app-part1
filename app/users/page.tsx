@@ -8,7 +8,7 @@ interface Users {
 const UsersPage = async () => {
   const res = await fetch(
     'https://jsonplaceholder.typicode.com/users',
-    { next: { revalidate: 10 } } // cashing every 10 seconds, reloading every 10 seconds, in react { cache: 'no-store' }
+    { cache: 'no-store' } // { cache: 'no-store' } is the data no strore => dynamic page and render server side. "npm run build" see the results
   )
   const users: Users[] = await res.json()
 
