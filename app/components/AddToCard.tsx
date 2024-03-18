@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-const AddToCart = () => {
+const AddToCard = () => {
   return (
     <div>
         <button onClick={() => console.log('Click')}>Add to ard</button>
@@ -10,4 +10,4 @@ const AddToCart = () => {
   )
 }
 
-export default AddToCart
+export default AddToCard
