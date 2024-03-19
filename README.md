@@ -44,7 +44,8 @@ Course:
   https://daisyui.com/
   Installation:   npm i -D daisyui@latest
 
--
+-Routing overview:
+  page.tsx, layout.tsx, loading.tsx, routes.tsx, not-found.tsx, error.tsx
 
 
 
