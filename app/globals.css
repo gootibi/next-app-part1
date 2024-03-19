@@ -7,7 +7,7 @@
 }
 
 /* This is dark mode setup */
-@media (prefers-color-scheme: dark) { 
+@media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
   }
@@ -15,5 +15,10 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  padding: 1rem;
+}
+
+@layer base {
+  h1 {
+    @apply font-extrabold text-2xl mb-3;
+  }
 }
