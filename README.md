@@ -47,6 +47,10 @@ Course:
 -Routing overview:
   page.tsx, layout.tsx, loading.tsx, routes.tsx, not-found.tsx, error.tsx
 
+- Fast sort npm:
+  Install: npm i fast-sort
+  
+
 
 
 
