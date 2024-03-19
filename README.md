@@ -33,7 +33,13 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-# Course:
+Course:
 
-# - https://jsonplaceholder.typicode.com/
+- https://jsonplaceholder.typicode.com/
+
+- Tailwind colors palette:
+  https://tailwindcss.com/docs/customizing-colors
+
+
+
 
