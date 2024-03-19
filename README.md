@@ -40,6 +40,15 @@ Course:
 - Tailwind colors palette:
   https://tailwindcss.com/docs/customizing-colors
 
+- Daisy UI - Tailwind components:
+  https://daisyui.com/
+  Installation:   npm i -D daisyui@latest
+
+-
+
+
+
+
 
 
 
