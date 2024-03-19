@@ -1,3 +1,4 @@
+// http://localhost:3000/users/[id]/photos/[photoId]
 import React from 'react'
 import UserTable from './UserTable'
 
