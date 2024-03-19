@@ -15,7 +15,7 @@ interface Props {
 
 const UserTable = async ({sortOrder}: Props) => {
     const res = await fetch(
-        'https://jsonplaceholder.typicode.com/users',
+        'https://jsonplaceholder.typicode.com/usersXXXXXX',
         { cache: 'no-store' } // { cache: 'no-store' } is the data no strore => dynamic page and render server side. "npm run build" see the results
     )
     const users: Users[] = await res.json()
