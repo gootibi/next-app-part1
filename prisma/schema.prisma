@@ -22,8 +22,8 @@ model User {
   registeredAt DateTime @default(now())
 }
 
-// model Products {
-//   id Int @id @default(autoincrement())
-//   name String @db.Char(255)
-//   price Float @db.Double
-// }
+model Product {
+  id    Int    @id @default(autoincrement())
+  name  String
+  price Float
+}
