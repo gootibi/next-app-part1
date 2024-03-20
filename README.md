@@ -202,6 +202,31 @@ Course:
     Inatall: npm install next-cloudinary
     Configuration: Add the following variable to your .env.local or .env file. 
                    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="<Your Cloud Name>"
+    Go: https://console.cloudinary.com/
+        Click settings - Upload - Upload presets: Add upload preset -> Copy: Upload preset name and Change Signing Mode: Unsigned
+
+    Uploading files:
+        Create app -> upload folder -> page.tsx
+        page.tsx: 
+                'use client'
+                import React from 'react'
+                import { CldUploadWidget } from 'next-cloudinary'
+
+                const UploadPage = () => {
+                    return (
+                        <CldUploadWidget uploadPreset='xbror44s'>
+                            {({ open }) =>
+                                <button
+                                    className='btn btn-primary'
+                                    onClick={() => open()}
+                                >
+                                    Upload
+                                </button>}
+                        </CldUploadWidget>
+                    )
+                }
+
+                export default UploadPage   
                 
 
   
