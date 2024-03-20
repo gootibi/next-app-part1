@@ -142,4 +142,39 @@ Course:
                     return NextResponse.json(newUser, { status: 201 })
                 }
 
+  Update the user (PUT):
+                export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+                    const body = await request.json()
+
+                    // Validity check
+                    const validation = schema.safeParse(body)
+                    if (!validation.success) {
+                        return NextResponse.json(validation.error.errors, { status: 400 })
+                    }
+
+                    // Searching user with id
+                    const user = await prisma.user.findUnique({
+                        where: { id: parseInt(body.id) }
+                    })
+
+                    // Not found users with id return error
+                    if (!user) {
+                        return NextResponse.json({ error: 'User not found' }, { status: 404 })
+                    }
+
+                    // Update user with prisma in database
+                    const updatedUser = await prisma.user.update({
+                        where: { id: user.id },
+                        data: {
+                            name: body.name,
+                            email: body.email
+                        }
+                    })
+
+                    // Return updated user in response
+                    return NextResponse.json(updatedUser)
+                }
+
+
+
   
