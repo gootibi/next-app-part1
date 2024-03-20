@@ -197,6 +197,11 @@ Course:
                   return NextResponse.json(deleteUser)
                 }
 
+- Choosing a Cloud Platform - Cloudinary: https://cloudinary.com/
+    Setting up a cloudinary: https://next.cloudinary.dev/installation
+    Inatall: npm install next-cloudinary
+    Configuration: Add the following variable to your .env.local or .env file. 
+                   NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="<Your Cloud Name>"
                 
 
   
