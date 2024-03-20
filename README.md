@@ -154,7 +154,7 @@ Course:
 
                     // Searching user with id
                     const user = await prisma.user.findUnique({
-                        where: { id: parseInt(body.id) }
+                        where: { id: parseInt(params.id) }
                     })
 
                     // Not found users with id return error

@@ -73,7 +73,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
     // Searching user with id
     const user = await prisma.user.findUnique({
-        where: { id: parseInt(body.id) }
+        where: { id: parseInt(params.id) }
     })
 
     // Not found users with id return error
@@ -105,3 +105,5 @@ export async function DELETE(request: NextRequest, { params: { id } }: Props) {
     // Return 200 response, success
     return NextResponse.json({});
 }
+
+
