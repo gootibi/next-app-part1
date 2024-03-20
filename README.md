@@ -60,4 +60,15 @@ Course:
   Prisma is a modern DB toolkit to query, migrate and model your database.
   More info with prisma: npx prisma => get more info and command
   Google search: "prisma connection string" => https://www.prisma.io/docs/orm/reference/connection-urls => .env and schema.prisma file overwrite
-  
+
+  Create model in schema.prisma file:
+  More example: https://www.prisma.io/docs/orm/prisma-schema/data-model/models
+  Own unique model:
+          model User {
+                id Int @id @default(autoincrement())
+                email String @unique
+                name String
+                followers Int @default(0)
+                isActive Boolean @default(true)
+          }
+  Create is success, then format: npx prisma format
