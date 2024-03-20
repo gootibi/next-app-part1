@@ -103,6 +103,43 @@ Course:
                  https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices
                 Copy past db.ts client text. 
 
-  
-  
+  Getting data: https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dynamic
+                client.ts:
+                export async function GET(request: NextRequest) {
+                    const user = await prisma.user.findMany()
 
+                    return NextResponse.json(user)
+                }
+
+  Creating data (POST):
+                export async function POST(request: NextRequest) {
+                    const body = await request.json()
+
+                    const validation = schema.safeParse(body)
+
+                    if (!validation.success) {
+                        return NextResponse.json(validation.error.errors, { status: 400 })
+                    }
+
+                    // Search not unique email (body.email - database)
+                    const user = await prisma.user.findUnique({
+                        where: { email: body.email }
+                    })
+
+                    // If find "body.email" in database create error message in response
+                    if (user) {
+                        return NextResponse.json({ error: 'User already exists'}, { status: 400 })
+                    }
+
+                    // Create new user in database. Post name and email. The other elements are created automatically
+                    const newUser = await prisma.user.create({
+                        data: {
+                            email: body.email,
+                            name: body.name,
+                        }
+                    })
+
+                    return NextResponse.json(newUser, { status: 201 })
+                }
+
+  

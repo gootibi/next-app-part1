@@ -1,6 +1,7 @@
 // Visit result http://localhost:3000/api/users/[id] => [id] = number 1 or 13 ect.
 import { NextRequest, NextResponse } from "next/server";
 import schema from "../schema";
+import prisma from "@/prisma/client";
 
 interface Props {
     params: { id: number }
@@ -8,12 +9,29 @@ interface Props {
 
 // export function GET(request: NextRequest, { params }: { params: { id: number } }) {
 //     if (params.id > 10) { // id greater than 10
+/*
 export function GET(request: NextRequest, { params: { id } }: Props) {
     if (id > 10) { // id greater than 10
         return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
 
     return NextResponse.json({ id: 1, name: 'Tibi' })
+}
+*/
+
+/* GET user informations from the database by giving ID. */
+export async function GET(request: NextRequest, {params}: {params: {id: string}}) {
+    const user = await prisma.user.findUnique({
+        where: {
+            id: parseInt(params.id)
+        }
+    })
+
+    if (!user) {
+        return NextResponse.json({ error: 'User not found' }, { status: 404 })
+    }
+
+    return NextResponse.json(user)
 }
 
 // Visit result http://localhost:3000/api/users/[id] => [id] = number 1 or 13 ect. POSTMAN - PUT - body json
