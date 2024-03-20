@@ -72,3 +72,30 @@ Course:
                 isActive Boolean @default(true)
           }
   Create is success, then format: npx prisma format
+
+  Migrations:
+  npx prisma migrate dev -> MYSQL database
+  /npx prisma db push -> MONGOdb database - nosql database/
+  Is successful: 
+                migrations/
+                └─ 20240320141758_initial/
+                  └─ migration.sql
+  Add plus one row in model:
+              model User {
+              id           Int      @id @default(autoincrement())
+              email        String   @unique
+              name         String
+              followers    Int      @default(0)
+              isActive     Boolean  @default(true)
+              registeredAt DateTime @default(now()) // This row plus
+            }
+  Then format: npx prisma format
+  Then migration: npx prisma migrate dev
+          migrations/
+              └─ 20240320142716_add_registered_at/
+                └─ migration.sql
+  Add the row in database! Auto refresh the database -> 
+                  -- AlterTable
+                  ALTER TABLE `user` ADD COLUMN `registeredAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3);
+                  
+
