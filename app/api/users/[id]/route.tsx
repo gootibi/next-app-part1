@@ -1,5 +1,6 @@
 // Visit result http://localhost:3000/api/users/[id] => [id] = number 1 or 13 ect.
 import { NextRequest, NextResponse } from "next/server";
+import schema from "../schema";
 
 interface Props {
     params: { id: number }
@@ -21,8 +22,11 @@ export async function PUT(request: NextRequest, { params }: { params: { id: numb
     // Validate the request body
     // If invalid return 400
     const body = await request.json()
-    if (!body.name) { // body.name is required
-        return NextResponse.json({ error: 'Name is required' }, { status: 400 })
+
+    // Using schema with validation (ZOD), many variables then one if statement.
+    const validation = schema.safeParse(body)
+    if (!validation.success) { // body.name is required
+        return NextResponse.json(validation.error.errors, { status: 400 })
     }
 
     // Fetch the user with the given id
@@ -46,5 +50,5 @@ export async function DELETE(request: NextRequest, { params: { id } }: Props) {
     }
     // Delete the user from database
     // Return 200 response, success
-    return  NextResponse.json({});
+    return NextResponse.json({});
 }

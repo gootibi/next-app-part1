@@ -44,12 +44,18 @@ Course:
   https://daisyui.com/
   Installation:   npm i -D daisyui@latest
 
--Routing overview:
+- Routing overview:
   page.tsx, layout.tsx, loading.tsx, routes.tsx, not-found.tsx, error.tsx
 
 - Fast sort npm:
   Install: npm i fast-sort
+
+- Validating Requests whith ZOD
+  https://zod.dev/?id=installation
+  Install: npm i zod
   
+
+
 
 
 
