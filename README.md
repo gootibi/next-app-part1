@@ -53,13 +53,11 @@ Course:
 - Validating Requests whith ZOD
   https://zod.dev/?id=installation
   Install: npm i zod
+
+- Prisma:
+  https://www.prisma.io/
+  Install: npm i prisma
+  Prisma is a modern DB toolkit to query, migrate and model your database.
+  More info with prisma: npx prisma => get more info and command
+  Google search: "prisma connection string" => https://www.prisma.io/docs/orm/reference/connection-urls => .env and schema.prisma file overwrite
   
-
-
-
-
-
-
-
-
-
