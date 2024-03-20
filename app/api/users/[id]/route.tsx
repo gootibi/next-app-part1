@@ -95,6 +95,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 }
 
 // Visit result http://localhost:3000/api/users/[id] => [id] = number 1 or 13 ect. POSTMAN - DELETE - body json empty
+/*
 export async function DELETE(request: NextRequest, { params: { id } }: Props) {
     // Fetch the user database
     // If doesn't exist, if not found, return 404
@@ -105,5 +106,26 @@ export async function DELETE(request: NextRequest, { params: { id } }: Props) {
     // Return 200 response, success
     return NextResponse.json({});
 }
+*/
 
+export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+    // Fetch the user database
+    // Searching user with id
+    const user = await prisma.user.findUnique({
+        where: { id: parseInt(params.id) }
+    })
+
+    // If doesn't exist, if not found, return 404
+    if (!user) {
+        return NextResponse.json({ error: 'User not found' }, { status: 404 })
+    }
+
+    // Delete the user from database
+    const deleteUser = await prisma.user.delete({
+        where: { id: user.id }
+    })
+
+    // Return 200 response and deleting user info, success
+    return NextResponse.json(deleteUser)
+}
 
