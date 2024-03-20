@@ -97,5 +97,12 @@ Course:
   Add the row in database! Auto refresh the database -> 
                   -- AlterTable
                   ALTER TABLE `user` ADD COLUMN `registeredAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3);
-                  
+
+  Create client.ts:
+  Google search: "prisma nextjs prismaclient"
+                 https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices
+                Copy past db.ts client text. 
+
+  
+  
 
