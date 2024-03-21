@@ -335,6 +335,8 @@ Course:
                                                     const session = await getServerSession(authOptions)
                                                     Exp.: h1>Hello {session && <span>{session.user?.name}</span>}</h1>
                     
+    Signing Out Users: add NavBar.tsx api endpoint /app/auth/signout
+                        Exp.: <Link href='/api/auth/signout'>Sign Out</Link>
 
 
 
