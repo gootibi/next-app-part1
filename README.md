@@ -321,6 +321,19 @@ Course:
                                                     const { status, data: session } = useSession()
                                                     Exp.: {status === 'authenticated' && <div>{session.user!.name}</div>}
 
+    Accessing Session on the Server: 
+                    /app/api/auth/[...nextauth]/route.ts write new export -> name authOptions
+                                                    export const authOptions = {
+                                                    providers: [
+                                                        GoogleProvider({
+                                                            clientId: process.env.GOOGLE_CLIENT_ID!,
+                                                            clientSecret: process.env.GOOGLE_CLIENT_SECRET!
+                                                        })
+                                                        ]
+                                                    }
+                    /app/page.tsx add useServerSession(): 
+                                                    const session = await getServerSession(authOptions)
+                                                    Exp.: h1>Hello {session && <span>{session.user?.name}</span>}</h1>
                     
 
 
