@@ -254,6 +254,50 @@ Course:
                                     NEXTAUTH_URL=http://localhost:3000
                                     // Secret key: GIT BASH -> Command: openssl rand -base64 32
                                     NEXTAUTH_SECRET=5a5dGh1rVmPeTPwRXHIeOuVY1zUsaMxdJr5N9XGCsh4=
-                                    
+    Configuration Google Provider:
+                    https://next-auth.js.org/providers/google
+                    Click: https://console.developers.google.com/apis/credentials
+                    This page is https://console.cloud.google.com/
+                            + Create new Project
+                            + Configure Consenst Page - select:
+                                            - Select: External (public page)
+                                            - App Name write
+                                            - User support select (email address)
+                                            - Later give it App domain, now "test mode run"
+                                            - Developer contact information -> Email addresses: write your email address
+                                            - Scope: Add or Remove Scope click - Add: '.../auth/userinfo.email' and '.../auth/userinfo.profile'
+                                            - Test users: Add User -> add email "gootibi@gmail.com" - test mode 100 user verification
+                                            - Summary: OAuth consent screen -> Click "BACK THE DASHBOARD"
+                            + Credentials page click -> Click "Create Credentials" -> Click "OAuth client ID":
+                            + Create OAuth client ID: 
+                                            - "Application type" selected: Web application
+                                            - "Application type" write: My Next App or any name
+                                            - "Authorized JavaScript origins" add: http://localhost:3000
+                                            - "Authorized redirect URIs" add: http://localhost:3000/api/auth/callback/google
+                                            - Click "Create" button
+                                            - PopUp window: client ID and client secret -> pastes in .env:
+                                                                                         GOOGLE_CLIENT_ID=client_id_string paste
+                                                                                         GOOGLE_CLIENT_SECRET=client_secret_string paste
+                     Write in route.ts file: add providers ->
+                            import GoogleProvider from "next-auth/providers/google";
+                            ...
+                            providers: [
+                            GoogleProvider({
+                                clientId: process.env.GOOGLE_CLIENT_ID,
+                                clientSecret: process.env.GOOGLE_CLIENT_SECRET
+                            })
+                            ]
+                            ...
+                    Add the SignIn link our NavBar: 
+                            NavBar.tsx file ->
+                            <Link href='/api/auth/signin'>Login</Link>
+                            
+
+
+
+
+
+
+
 
     
