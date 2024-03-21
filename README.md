@@ -303,7 +303,27 @@ Course:
                                             return NextResponse.json(token)
                                         }
 
-    
+    Accessing Session on the Client:
+                    Create /app/auth/Provider.ts:
+                                            'use client'
+                                            import React, { ReactNode } from 'react'
+                                            import { SessionProvider } from 'next-auth/react'
+                                            const AuthProvider = ({ children }: { children: ReactNode }) => {
+                                                return (
+                                                    <SessionProvider>
+                                                        {children}
+                                                    </SessionProvider>
+                                                )
+                                            }
+                                            export default AuthProvider
+                    Root layout.tsx give it <AuthProvider>NavBar, children ... </AuthProvider>
+                    NavBar.tsx add useSession() -> status and data: session:
+                                                    const { status, data: session } = useSession()
+                                                    Exp.: {status === 'authenticated' && <div>{session.user!.name}</div>}
+
+                    
+
+
 
 
 
