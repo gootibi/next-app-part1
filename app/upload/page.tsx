@@ -18,6 +18,12 @@ const UploadPage = () => {
             {/* Upload image whith "CldUploadWidget" and set the public_id (onSuccess) */}
             <CldUploadWidget
                 uploadPreset='xbror44s'
+                // Customizing the widget
+                options={{
+                    sources: ['local'],
+                    multiple: true,
+                    maxFiles: 5,
+                }}
                 // Set uploded inage public_id
                 onSuccess={(result, option) => {
                     if (result.event != 'success') return

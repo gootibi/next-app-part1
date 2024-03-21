@@ -229,6 +229,31 @@ Course:
                 export default UploadPage   
 
     Upload image whith "CldUploadWidget" and set the public_id (onSuccess).
-    Image is visible, when upload success.            
+    Image is visible, when upload success.
 
-  
+    Customize the UploadWidget: https://demo.cloudinary.com/uw/#/ 
+                Example: options={{
+                            sources: ['local'],
+                            multiple: true,
+                            maxFiles: 5,
+                        }}    
+
+
+- Authentication with Next Auth
+    Setting up next auth: https://next-auth.js.org/
+    Installation: https://next-auth.js.org/getting-started/example
+                  npm install next-auth
+    Add API route: https://next-auth.js.org/configuration/initialization#route-handlers-app
+                   Create: /app/api/auth/[...nextauth]/route.ts
+                   Write in route.ts file:
+                                    import NextAuth from "next-auth"
+                                    const handler = NextAuth({ ... })
+
+                                    export { handler as GET, handler as POST }
+                    Write .env file:
+                                    NEXTAUTH_URL=http://localhost:3000
+                                    // Secret key: GIT BASH -> Command: openssl rand -base64 32
+                                    NEXTAUTH_SECRET=5a5dGh1rVmPeTPwRXHIeOuVY1zUsaMxdJr5N9XGCsh4=
+                                    
+
+    
