@@ -291,7 +291,19 @@ Course:
                     Add the SignIn link our NavBar: 
                             NavBar.tsx file ->
                             <Link href='/api/auth/signin'>Login</Link>
-                            
+    
+    Understanding Authentication Session: /auth/token/route.ts create file -> 
+                                        // http://localhost:3000/api/auth/token -> see the json file
+                                        // Never have to do this in real live project...
+                                        import { getToken } from "next-auth/jwt";
+                                        import { NextRequest, NextResponse } from "next/server";
+
+                                        export async function GET(request: NextRequest) {
+                                            const token = await getToken({ req: request })
+                                            return NextResponse.json(token)
+                                        }
+
+    
 
 
 
