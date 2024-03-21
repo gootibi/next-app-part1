@@ -205,7 +205,7 @@ Course:
     Go: https://console.cloudinary.com/
         Click settings - Upload - Upload presets: Add upload preset -> Copy: Upload preset name and Change Signing Mode: Unsigned
 
-    Uploading files:
+    Uploading files: https://next.cloudinary.dev/clduploadwidget/configuration#instance-methods
         Create app -> upload folder -> page.tsx
         page.tsx: 
                 'use client'
@@ -227,6 +227,8 @@ Course:
                 }
 
                 export default UploadPage   
-                
+
+    Upload image whith "CldUploadWidget" and set the public_id (onSuccess).
+    Image is visible, when upload success.            
 
   
