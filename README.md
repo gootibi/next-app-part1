@@ -366,6 +366,41 @@ Course:
                                 matcher: ['/users/:id*', '/dashboard/:path*'],
                             }
 
+    Database Adapters: https://next-auth.js.org/adapters -> Click Prisma
+                       Install: npm install @next-auth/prisma-adapter
+                       /app/api/auth/[...nextauth]/route.ts -> add prisma-adapter from @next-auth/prisma-adapter and prisma @/prisma/client
+                       Rewrite route.ts:
+                                        import NextAuth, { NextAuthOptions } from "next-auth"
+                                        import GoogleProvider from "next-auth/providers/google";
+                                        import { PrismaAdapter } from "@next-auth/prisma-adapter";
+                                        import prisma from "@/prisma/client";
+
+                                        export const authOptions: NextAuthOptions = {
+                                        adapter: PrismaAdapter(prisma),
+                                        providers: [
+                                            GoogleProvider({
+                                            clientId: process.env.GOOGLE_CLIENT_ID!,
+                                            clientSecret: process.env.GOOGLE_CLIENT_SECRET!
+                                            })
+                                        ],
+                                        session: {
+                                            strategy: "jwt"
+                                        }
+                                        }
+
+                                        const handler = NextAuth(authOptions)
+
+                                        export { handler as GET, handler as POST }
+                        Create new prisma models in schema.prisma file: 
+                                1. Delete old model and run: npx prisma migrate dev
+                                2. Create new model and run: npx prisma migrate -> https://authjs.dev/reference/adapter/prisma models:
+                                                                                            - model Account {}
+                                                                                            - model Session {}
+                                                                                            - model User {}
+                                                                                            - model VerificationToken {}
+                                3. Restart nextjs server
+    
+
     
 
 
