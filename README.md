@@ -338,6 +338,36 @@ Course:
     Signing Out Users: add NavBar.tsx api endpoint /app/auth/signout
                         Exp.: <Link href='/api/auth/signout'>Sign Out</Link>
 
+    Custom Login Page in Next-Auth: https://www.youtube.com/watch?v=g6S-XZxq9Ug - Thanks Sakura Dev!
+
+    Protecting routes: middleware.ts put in root folder out app folder
+                        middleware.ts: // NextJs automatikal looks for middleware and config constants
+                            export { default } from "next-auth/middleware";
+                            export const config = {
+                                // *: zero or more parameters
+                                // +: one or more parameters
+                                // ?: zero or one parameters
+                                matcher: ['/users/:id*', '/dashboard/:path*'],
+                            }
+    
+                        Redirections: middleware.ts - this is test configuration, uper code work
+                            import { NextRequest, NextResponse } from "next/server";
+                            // NextJs automatikal looks for
+                            // Giv config - matcher endpoint exp.: '/users' and middleware function give it http://localhost:3000/new-page
+                            export async function middleware(request: NextRequest) {
+                                // Redirect to new-page page
+                                return NextResponse.redirect(new URL('/new-page', request.url))
+                            }
+                            // NextJs automatikal looks for
+                            export const config = {
+                                // *: zero or more parameters
+                                // +: one or more parameters
+                                // ?: zero or one parameters
+                                matcher: ['/users/:id*', '/dashboard/:path*'],
+                            }
+
+    
+
 
 
 
