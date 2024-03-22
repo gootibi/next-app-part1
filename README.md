@@ -400,6 +400,52 @@ Course:
                                                                                             - model VerificationToken {}
                                 3. Restart nextjs server
     
+    Configuring CredentialsProvider: https://next-auth.js.org/providers/credentials
+                        Install: npm i bcrypt and npm i bcrypt
+                                 npm i -D @types/bcrypt
+                        Add row User prisma model schema.prisma file: 
+                                hashedPassword String?
+                        Run: npx prisma migrate dev
+                        /app/api/auth/[...nextauth]/route.ts -> add CredentialsProvider
+                            Rewrite route.ts: 
+                                            ...
+                                            import CredentialsProvider from "next-auth/providers/credentials";
+                                            ...
+                                            providers: [
+                                            CredentialsProvider({ // Email and password credentials
+                                            name: 'Credentials',
+                                            credentials: {
+                                                email: { label: 'Email', type: 'email', placeholder: 'Email' }, // email input settings
+                                                password: { label: 'Password', type: 'password', placeholder: 'Password' } // password input settings
+                                            },
+                                            async authorize(credentials, req) {
+                                                // Check incoming email and password values, when falsy, return null.
+                                                if (!credentials?.email || !credentials.password) {
+                                                return null;
+                                                }
+
+                                                // Search for email in database.
+                                                const user = await prisma.user.findUnique({
+                                                where: {
+                                                    email: credentials.email
+                                                }
+                                                })
+
+                                                // Not password match return null
+                                                if (!user) {
+                                                return null;
+                                                }
+
+                                                // Check password is match (credential and user passwords)
+                                                const passwordsMatch = await bcrypt.compare(credentials.password, user.hashedPassword!)
+
+                                                // Password in database matches then return user, or not matches then return null
+                                                return passwordsMatch ? user : null;
+                                            },
+                                            ...
+
+
+    
 
     
 
