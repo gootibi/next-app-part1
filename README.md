@@ -527,19 +527,60 @@ Course:
                                             }
 
                                             export default WelcomeTemplate
-    
 
-    
+    Previewing email: 
+        Add .gitignore file: .react-email/
+        Run command: npm run preview-email
+        Add browser (chrome ect.): http://localhost:3030/
 
-    
+    Styling Emails:
+            CSS styles:
+                        import React, { CSSProperties } from 'react'
+                        import { Html, Body, Container, Text, Link, Preview } from '@react-email/components'
 
+                        const WelcomeTemplate = ({ name }: { name: string }) => {
+                            return (
+                                <Html>
+                                    <Preview>Welcome aboard!</Preview>
+                                    <Body style={body}>
+                                        <Container>
+                                            <Text style={text}>Hello {name}</Text>
+                                            <Link href='https://www.gsplus.hu/'>www.gamestar.hu</Link>
+                                        </Container>
+                                    </Body>
+                                </Html>
+                            )
+                        }
 
+                        // CSS properties add exmp.: <Body style={body}>
+                        const body: CSSProperties = {
+                            background: '#fff',
+                        }
 
+                        const text: CSSProperties = {
+                            fontSize: '32px',
+                        }
 
+                        export default WelcomeTemplate
 
+            TailWind styles: add Tailwind and set <Tailwind>... Elements ...</Tailwind> -> <Body className='bg-white'>
+                        import React, { CSSProperties } from 'react'
+                        import { Html, Body, Container, Tailwind, Text, Link, Preview } from '@react-email/components'
 
+                        const WelcomeTemplate = ({ name }: { name: string }) => {
+                            return (
+                                <Html>
+                                    <Preview>Welcome aboard!</Preview>
+                                    <Tailwind>
+                                        <Body className='bg-white'>
+                                            <Container>
+                                                <Text className='font-bold text-3xl'>Hello {name}</Text>
+                                                <Link href='https://www.gsplus.hu/'>www.gamestar.hu</Link>
+                                            </Container>
+                                        </Body>
+                                    </Tailwind>
+                                </Html>
+                            )
+                        }
 
-
-
-
-    
+                        export default WelcomeTemplate
