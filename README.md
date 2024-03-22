@@ -494,6 +494,40 @@ Course:
                             }
                 POSTMAN prog. check: -> POST: http://localhost:3000/api/register -> json
 
+- Sending Emails:
+    Setting up REACT email: https://react.email/
+        Manual setup: https://react.email/docs/getting-started/manual-setup (components)
+        Install: npm i react-email @react-email/components
+        Add scripts in package.json file: 
+                                        {
+                                        "scripts": {
+                                            ...
+                                            "preview-email": "email dev -p 3030" // -p -> alternativ port puts 3030
+                                            ...
+                                        }
+                                        }
+    Creating an Email Template:
+        Create a new folder called emails in root folder -> create a file inside called WelcomeTemplate.tsx -> Could call everything. 
+                        WelcomeTemplate.tsx:
+                                            import React from 'react'
+                                            import { Html, Body, Container, Text, Link, Preview } from '@react-email/components'
+
+                                            const WelcomeTemplate = ({ name }: { name: string }) => {
+                                                return (
+                                                    <Html>
+                                                        <Preview>Welcome aboard!</Preview>
+                                                        <Body>
+                                                            <Container>
+                                                                <Text>Hello {name}</Text>
+                                                                <Link href='https://www.gsplus.hu/'>www.gamestar.hu</Link>
+                                                            </Container>
+                                                        </Body>
+                                                    </Html>
+                                                )
+                                            }
+
+                                            export default WelcomeTemplate
+    
 
     
 
