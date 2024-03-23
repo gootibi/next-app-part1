@@ -584,3 +584,26 @@ Course:
                         }
 
                         export default WelcomeTemplate
+    
+    Sending Emails: "https://react.email/docs/integrations/resend" -> Resend and "https://resend.com/" -> most popular in developers and companies
+        Login -> Add API key
+        Add .env file: RESEND_API_KEY=*****************
+        Run command: npm i resend@1.0.0
+        Add /app/api/send-email/route.ts endpoint -> Sorry, not working yet the code ...
+                            import { Resend } from 'resend'
+                            import WelcomeTemplate from '@/emails/WelcomeTemplate'
+                            import { NextResponse } from 'next/server'
+
+                            const resend = new Resend(process.env.RESEND_API_KEY)
+
+                            export async function POST() {
+                                await resend.emails.send({
+                                    from: '...', // Add domain in https://resend.com/domains
+                                    to: 'gootibi@gmail.com',
+                                    subject: '...',
+                                    react: WelcomeTemplate({name: 'gootibi'})
+                                })
+
+                                return NextResponse.json({})
+                            }
+    
