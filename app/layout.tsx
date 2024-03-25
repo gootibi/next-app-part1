@@ -4,7 +4,7 @@ import { Inter, Roboto } from 'next/font/google' // Import Google Fonts
 import localFont from 'next/font/local' // Import local Fonts
 import NavBar from './NavBar'
 import AuthProvider from './auth/Provider'
-import GoogleAnalyticsScript from './GoogleAnaliticsScript'
+// import GoogleAnalyticsScript from './GoogleAnaliticsScript'
 
 // create a fonst
 const inter = Inter({ subsets: ['latin'] })
@@ -37,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="winter">
-      <GoogleAnalyticsScript />
+      {/* <GoogleAnalyticsScript /> */} {/* Third-Party component */}
       {/* <body className={poppins.className}> Set roboto font with Google or poppins whith local font */}
       <body className={poppins.variable}> {/* Set roboto font with Google or poppins whith local font */}
         <AuthProvider>

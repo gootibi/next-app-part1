@@ -762,6 +762,57 @@ Course:
               }
             }
 
+- Lazy Loading: is a strategy for loading client components or third party libraries in the future when we need them. Loading as a result of a user interaction. Like when the user clicks on a button ect.... Use this strategy large, heavy components!
+    Exemple: app/components/HeavyComponent.tsx create - it is have lot of data or code in real life.
+    1. Dynamic imports:
+                page.tsx:
+                        ...
+                        import dynamic from "next/dynamic"; // Lazy loading
+                        const HeavyComponent = dynamic(() => import('./components/HeavyComponent'), { ssr: false ,loading: () => <p>Loading...</p>})  // imoprt dynamic, second argument is a options object, yet Loading... indikator and SSR false.
+                        ...
+                        <button className="btn btn-outline my-3" onClick={() => setIsVisible(true)}>Show</button>  {/* Lazy loading */}
+                        {isVisible && <HeavyComponent />
+                        ...
+    
+    2. Install terminal: "npm i lodash" and "npm i -D @types/lodash" - easy manipulation object and array (sorting, filtering ect.).
+                page.tsx: This is statically:
+                        ...
+                        import _ from "lodash"
+                        ...
+                              <button className="btn btn-outline my-3" onClick={() => {
+                                const user = [
+                                  {name: 'c'},
+                                  {name: 'b'},
+                                  {name: 'a'},
+                                ]
+
+                                const sorted = _.orderBy(user, 'name')
+
+                                console.log(sorted)
+                              }}>Show 2</button>  {/* Lazy loading */}
+                        ...
+
+                            This is dynamically:
+                            ...
+                            //no inmort lodash
+                            ...
+                            <button className="btn btn-outline my-3" onClick={async () => {
+
+                                const _ = (await import('lodash')).default
+
+                                const user = [
+                                 { name: 'c' },
+                                 { name: 'b' },
+                                 { name: 'a' },
+                                ]
+
+                                const sorted = _.orderBy(user, 'name')
+
+                                console.log(sorted)
+                              }}>Show 2</button>
+                            ...
+
+
 
         
 
