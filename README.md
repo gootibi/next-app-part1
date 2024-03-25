@@ -607,3 +607,58 @@ Course:
                                 return NextResponse.json({})
                             }
     
+- Optimizing Imgaes:
+    Use: Local images: 1. <Images /> -> import Image from "next/image"; // the image size is smaller, help next. The width and height is automatically set.
+                       2. import Image from "next/image";
+                          import coffe from "@/public/images/coffe2.jpg"
+                          ...
+                          <Image src={coffe} alt="Coffe"/>
+        Outside our application (remote images): Google search: "next images" -> https://nextjs.org/docs/pages/api-reference/components/image ->
+                        -> search in link "remotePatterns":
+                                            next.config.js: 
+                                                        module.exports = {
+                                                            images: {
+                                                                remotePatterns: [
+                                                                {
+                                                                    protocol: 'https',
+                                                                    hostname: 'example.com',
+                                                                    port: '',
+                                                                    pathname: '/account123/**',
+                                                                },
+                                                                ],
+                                                            },
+                                                        }
+
+                                Exp.:   /** @type {import('next').NextConfig} */
+                                        const nextConfig = {
+                                            images: {
+                                                remotePatterns: [
+                                                {
+                                                    protocol: 'https',
+                                                    hostname: 'bit.ly',
+                                                },
+                                                ],
+                                            },
+                                        }
+
+                                        module.exports = nextConfig
+
+                                page.tsx esp.:
+                                            <main className="relative h-screen"> {/* Set images position - relative - h-screean */}
+                                                <Image
+                                                    src="https://bit.ly/react-cover"
+                                                    alt="Coffe"
+                                                    fill
+                                                    //style={{ objectFit: "contain" }}
+                                                    className="object-cover"
+                                                    sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw" // mobil, tablet, and desktop devices
+                                                    quality={100} // Quality of the image set
+                                                    priority
+                                                />
+                                            </main>
+
+
+
+
+
+    
